@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col s12 ">
+        <div class="card ">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="col s12">
+                        <form #employeeForm="ngForm" (ngSubmit)="onSubmit(employeeForm)">
+                            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="employeeService.selectedEmployee._id">
+                            <div class="row">
+
+                              <div class="input-field col s12">
+                                <input type="text" name="empId" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.empId" placeholder="Enter the empId No:" >
+                                <label>EmpID :</label>
+                              </div>
+
+                              <div class="input-field col s12">
+                                <input type="text" name="firstName" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.firstName" placeholder="Enter the first name :" >
+                                <label>First Name :</label>
+                              </div>
+
+                              <div class="input-field col s12">
+                                <input type="text" name="lastName" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.lastName" placeholder="Enter the last name :" >
+                                <label>First Name :</label>
+                              </div>
+
+                              <div class="input-field col s12">
+                                <input type="email" name="email" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.email" placeholder="Enter the email address :" >
+                                <label>Email :</label>
+                              </div>
+
+                               <div class="input-field col s12">
+                                <input type="text" name="phoneNo" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.phoneNo" placeholder="Enter the phone no. :" >
+                                <label>Phone No. :</label>
+                              </div>
+
+                              <div class="input-field col s12">
+                                <input type="text" name="salary" #name="ngModel" [(ngModel)]="employeeService.selectedEmployee.salary" placeholder="Enter the salary amount">
+                                <label> Salary:</label>
+                            </div>
+
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <button class="btn btn-custom right resetButton " type="button" (click)="resetForm(employeeForm)">Reset</button>
+                                <button class="btn btn-custom right submitButton" type="submit" [disabled]="!employeeForm.valid">Submit</button>
+                              </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col s12">
+                        <table class="responsive-table highlight">
+                            <thead>
+                                <tr>
+                                    <th>EmpId :</th>
+                                    <th>First Name :</th>
+                                    <th>Last Name :</th>
+                                    <th>Email :</th>
+                                    <th>Phone No. :</th>
+                                    <th>Salary :</th>
+                                    <th></th>
+                                </tr>
+
+                            </thead>
+                            <tr *ngFor='let emp of employeeService.employees'>
+                                <td>{{emp.empId}}</td>
+                                <td>{{emp.firstName}}</td>
+                                <td>{{emp.lastName}}</td>
+                                <td>{{emp.email}}</td>
+                                <td>{{emp.phoneNo}}</td>
+                                <td>{{emp.salary}}</td>
+                                <td>
+                                    <a class="action-btn editButton" (click)="onEdit(emp)">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <a class="action-btn deleteButton" (click)="onDelete(emp._id,employeeForm)">
+                                        <i class="material-icons">delete</i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
